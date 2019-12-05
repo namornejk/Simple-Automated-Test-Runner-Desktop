@@ -21,6 +21,7 @@ public class MainFrame extends JFrame {
         btnChooseFile = new JButton("Choose file");
         btnChooseFile.addActionListener(e -> saveToFile());
         btnRunTests = new JButton("Run tests");
+        btnRunTests.addActionListener(e -> runTests());
 
         add(btnChooseFile);
         add(btnRunTests);
@@ -28,18 +29,15 @@ public class MainFrame extends JFrame {
         pack();
     }
 
-    public void runCommand(String command){
-        ProcessBuilder pb = new ProcessBuilder(command);
-        pb.redirectErrorStream(true);
+    public void runTests(){
         try{
-            Process process = pb.start();
-            BufferedReader inStreamReader = new BufferedReader(
-                    new InputStreamReader(process.getInputStream()));
-            while(inStreamReader.readLine() != null){
-                // Place for code saving test results
-            }
-        }catch(IOException e){e.printStackTrace();}
+            Runtime.getRuntime().exec("cmd.exe /c javac testing/Student.java");
+            Runtime.getRuntime().exec("cmd.exe /c javac -cp ./testing;testing/junit-4.10.jar;testing/hamcrest-core-1.3.jar testing/TestStudent.java");
+            Runtime.getRuntime().exec("cmd.exe /c javac -cp ./testing;testing/junit-4.10.jar;testing/hamcrest-core-1.3.jar testing/TestSuitStudent.java");
+            Runtime.getRuntime().exec("cmd.exe /c javac -cp ./testing;testing/junit-4.10.jar;testing/hamcrest-core-1.3.jar testing/TestRunnerStudent.java");
 
+            Runtime.getRuntime().exec("cmd.exe /c java -cp ./testing;testing/junit-4.10.jar;testing/hamcrest-core-1.3.jar org.junit.runner.JUnitCore testing/TestStudent > log.txt");
+        }catch (Exception e){e.printStackTrace();}
     }
 
     public void saveToFile(){

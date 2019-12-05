@@ -28,10 +28,11 @@ public class MainFrame extends JFrame {
         pack();
     }
 
-    private void saveToFile(){
+
+
+    public void saveToFile(){
         fileChooser = new JFileChooser();
         int retval = fileChooser.showSaveDialog(btnChooseFile);
-        System.out.println(retval);
         if (retval == JFileChooser.APPROVE_OPTION) {
             File file = fileChooser.getSelectedFile();
 

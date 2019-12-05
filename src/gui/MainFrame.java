@@ -28,7 +28,19 @@ public class MainFrame extends JFrame {
         pack();
     }
 
+    public void runCommand(String command){
+        ProcessBuilder pb = new ProcessBuilder(command);
+        pb.redirectErrorStream(true);
+        try{
+            Process process = pb.start();
+            BufferedReader inStreamReader = new BufferedReader(
+                    new InputStreamReader(process.getInputStream()));
+            while(inStreamReader.readLine() != null){
+                // Place for code saving test results
+            }
+        }catch(IOException e){e.printStackTrace();}
 
+    }
 
     public void saveToFile(){
         fileChooser = new JFileChooser();

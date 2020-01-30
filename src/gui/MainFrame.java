@@ -36,7 +36,7 @@ public class MainFrame extends JFrame {
             Runtime.getRuntime().exec("cmd.exe /c javac -cp ./testing;testing/junit-4.10.jar;testing/hamcrest-core-1.3.jar testing/TestSuitStudent.java");
             Runtime.getRuntime().exec("cmd.exe /c javac -cp ./testing;testing/junit-4.10.jar;testing/hamcrest-core-1.3.jar testing/TestRunnerStudent.java");
 
-            Runtime.getRuntime().exec("cmd.exe /c java -cp ./testing;testing/junit-4.10.jar;testing/hamcrest-core-1.3.jar org.junit.runner.JUnitCore testing/TestStudent > log.txt");
+            Runtime.getRuntime().exec("cmd.exe /c java -cp ./testing;testing/junit-4.10.jar;testing/hamcrest-core-1.3.jar;./testing org.junit.runner.JUnitCore TestStudent > log.txt");
         }catch (Exception e){e.printStackTrace();}
     }
 
